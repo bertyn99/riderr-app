@@ -2,12 +2,11 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 
+import HomeScreen from "./screens/HomeScreen";
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Text>Ridder clone of uber</Text>
-      </View>
+      <HomeScreen></HomeScreen>
     </Provider>
   );
 }
