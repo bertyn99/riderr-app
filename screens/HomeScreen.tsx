@@ -1,14 +1,19 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, Image } from "react-native";
 import React from "react";
 import tw from "../utils/tailwind";
+import NavOptions from "../components/NavOptions";
 type Props = {};
 
 const HomeScreen = (props: Props) => {
   return (
-    <SafeAreaView
-      style={tw`h-full bg-blue-400 flex justify-center items-center`}
-    >
-      <Text style={tw`text-white text-2xl font-semibold`}>HomeScreen</Text>
+    <SafeAreaView style={tw`h-full  `}>
+      <View style={tw`p-5`}>
+        <Image
+          style={{ width: 100, height: 100, resizeMode: "contain" }}
+          source={{ uri: "https://links.papareact.com/gzs" }}
+        />
+        <NavOptions></NavOptions>
+      </View>
     </SafeAreaView>
   );
 };
