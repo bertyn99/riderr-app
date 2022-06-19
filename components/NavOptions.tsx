@@ -2,9 +2,12 @@ import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "../utils/tailwind";
 import { AntDesign } from "@expo/vector-icons";
-
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../App";
 type Props = {};
 
+type mapScreenProp = StackNavigationProp<RootStackParamList, "MapScreen">;
 const data = [
   {
     id: "123",
@@ -13,13 +16,14 @@ const data = [
     screen: "MapScreen",
   },
   {
-    id: "123",
+    id: "143",
     title: "Order food",
     image: "https://links.papareact.com/28w",
     screen: "EatScreen",
   },
 ];
 const NavOptions = (props: Props) => {
+  const navigation = useNavigation<mapScreenProp>();
   return (
     <FlatList
       data={data}
@@ -28,6 +32,7 @@ const NavOptions = (props: Props) => {
       renderItem={({ item }) => (
         <TouchableOpacity
           style={tw`p-2  pb-8 pt-4 bg-gray-200 m-2 w-40 rounded flex items-center justify-center`}
+          onPress={() => navigation.navigate(item.screen)}
         >
           <View>
             <Image
