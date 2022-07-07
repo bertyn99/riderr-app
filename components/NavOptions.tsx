@@ -7,7 +7,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../App";
 type Props = {};
 
-type mapScreenProp = StackNavigationProp<RootStackParamList, "MapScreen">;
+type mapScreenProp = StackNavigationProp<RootStackParamList, "HomeScreen">;
 const data = [
   {
     id: "123",
@@ -32,7 +32,7 @@ const NavOptions = (props: Props) => {
       renderItem={({ item }) => (
         <TouchableOpacity
           style={tw`p-2  pb-8 pt-4 bg-gray-200 m-2 w-40 rounded flex items-center justify-center`}
-          onPress={() => navigation.navigate(item.screen)}
+          onPress={() => navigation.navigate("MapScreen")}
         >
           <View>
             <Image

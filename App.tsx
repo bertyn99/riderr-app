@@ -10,6 +10,8 @@ import MapScreen from "./screens/MapScreen";
 export type RootStackParamList = {
   HomeScreen: undefined;
   MapScreen: undefined;
+  AuthScreen: undefined;
+  Profile: { userId: string };
 };
 
 export default function App() {
@@ -26,6 +28,11 @@ export default function App() {
             />
             <Stack.Screen
               name="MapScreen"
+              component={MapScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="AuthScreen"
               component={MapScreen}
               options={{ headerShown: false }}
             />
