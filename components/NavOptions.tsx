@@ -25,30 +25,32 @@ const data = [
 const NavOptions = (props: Props) => {
   const navigation = useNavigation<mapScreenProp>();
   return (
-    <FlatList
-      data={data}
-      horizontal
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          style={tw`p-2  pb-8 pt-4 bg-gray-200 m-2 w-40 rounded flex items-center justify-center`}
-          onPress={() => navigation.navigate("MapScreen")}
-        >
-          <View>
-            <Image
-              style={{ height: 120, width: 120, resizeMode: "contain" }}
-              source={{ uri: item.image }}
-            />
-            <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
-            <AntDesign
-              name="arrowright"
-              size={16}
-              style={tw`p-2 bg-black rounded-full w-8 text-white`}
-            />
-          </View>
-        </TouchableOpacity>
-      )}
-    />
+    <View>
+      <FlatList
+        data={data}
+        horizontal
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={tw`p-2  pb-8 pt-4 bg-gray-200 m-2 w-40 rounded flex items-center justify-center`}
+            onPress={() => navigation.navigate("MapScreen")}
+          >
+            <View>
+              <Image
+                style={{ height: 120, width: 120, resizeMode: "contain" }}
+                source={{ uri: item.image }}
+              />
+              <Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+              <AntDesign
+                name="arrowright"
+                size={16}
+                style={tw`p-2 bg-black rounded-full w-8 text-white`}
+              />
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
   );
 };
 
