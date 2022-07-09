@@ -4,19 +4,13 @@ import Logo from "../../assets/logo_rider.png";
 import tw from "../../utils/tailwind";
 import BasicInput from "../../components/basic/BasicInput";
 import BasicButton from "../../components/basic/BasicButton";
+import SocialButton from "../../components/socialButton";
 const SignInScreen = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const handleSignIn = () => {
     console.warn("Sign In");
-  };
-  const handleGoogleSignIn = () => {
-    console.warn("Google Sign In");
-  };
-
-  const handleFacebookSignIn = () => {
-    console.warn("Facebook Sign In");
   };
 
   const gotToSIgnUp = () => {
@@ -49,18 +43,7 @@ const SignInScreen = () => {
           fn={() => console.log("forgot password")}
         ></BasicButton>
 
-        <BasicButton
-          text="Sign In with Google"
-          bg="#FAE9EA"
-          txC="#DD4D46"
-          fn={() => handleGoogleSignIn}
-        ></BasicButton>
-        <BasicButton
-          text="Sign In with Facebook"
-          bg="#E7EAF4"
-          txC="#4765A9"
-          fn={() => handleFacebookSignIn}
-        ></BasicButton>
+        <SocialButton></SocialButton>
         <BasicButton
           text="Dont have a account? Sign Up"
           type="secondary"
