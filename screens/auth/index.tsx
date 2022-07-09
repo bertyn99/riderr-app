@@ -5,11 +5,15 @@ import React from "react";
 import tw from "../../utils/tailwind";
 import HomeScreen from "./HScreen";
 import SignInScreen from "./SignInScreen";
+import SignUpScreen from "./SignUpScreen";
+import ConfirmEmailScreen from "./ConfirmEmailScreen";
 const Index = () => {
   return (
     <SafeAreaView style={tw`flex-1 bg-zinc-300 `}>
       {/* <HomeScreen></HomeScreen> */}
-      <SignInScreen></SignInScreen>
+      {/*  <SignInScreen></SignInScreen> */}
+      {/*    <SignUpScreen></SignUpScreen> */}
+      <ConfirmEmailScreen></ConfirmEmailScreen>
     </SafeAreaView>
   );
 };
