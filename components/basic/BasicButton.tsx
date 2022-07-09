@@ -29,7 +29,7 @@ const BasicButton = ({
   return (
     <TouchableOpacity
       style={tw.style(
-        "w-full rounded-md items-center p-2 my-2",
+        "w-full rounded-full items-center p-2 my-2",
         bg ? { backgroundColor: bg } : bgColor[type]
       )}
       onPress={fn}
