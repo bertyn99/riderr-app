@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
-
+import AuthScreen from "./screens/auth/index";
 export type RootStackParamList = {
   HomeScreen: undefined;
   MapScreen: undefined;
@@ -20,7 +20,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaProvider>
-          <Stack.Navigator initialRouteName="HomeScreen">
+          <Stack.Navigator initialRouteName="AuthScreen">
             <Stack.Screen
               name="HomeScreen"
               component={HomeScreen}
@@ -33,7 +33,7 @@ export default function App() {
             />
             <Stack.Screen
               name="AuthScreen"
-              component={MapScreen}
+              component={AuthScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
