@@ -2,8 +2,12 @@ import {
   NavigationContainer,
   NavigatorScreenParams,
   RouteGroupConfig,
+  CompositeNavigationProp,
 } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
   HomeScreen: undefined;
@@ -29,9 +33,12 @@ export type authIndexScreenProp = NativeStackNavigationProp<
   "SignInScreen" | "SignUpScreen"
 >;
 
-export type authSignInScreenProp = NativeStackNavigationProp<
-  AuthStackParams,
-  "ForgotPasswordScreen" | "SignUpScreen"
+export type authSignInScreenProp = CompositeNavigationProp<
+  NativeStackNavigationProp<
+    AuthStackParams,
+    "ForgotPasswordScreen" | "SignUpScreen"
+  >,
+  NativeStackNavigationProp<RootStackParamList, "HomeScreen">
 >;
 
 export type authSignUpScreenProp = NativeStackNavigationProp<
