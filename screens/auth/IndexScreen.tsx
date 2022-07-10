@@ -3,8 +3,13 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import Logo from "../../assets/logo_rider.png";
 import tw from "../../utils/tailwind";
-const Hscreen = () => {
-  const navigate = useNavigation();
+import {
+  authIndexScreenProp,
+  AuthStackParams,
+} from "../../components/navigation/types";
+
+const IndexScreen = () => {
+  const navigation = useNavigation<authIndexScreenProp>();
   return (
     <View style={tw`items-center justify-between`}>
       <Image
@@ -15,13 +20,17 @@ const Hscreen = () => {
 
       <View style={tw`w-3/4 flex-row justify-between items-center`}>
         <TouchableOpacity
-          onPress={() => console.log("first") /* navigate.navigate() */}
+          onPress={
+            () => navigation.navigate("SignInScreen") /* navigate.navigate() */
+          }
         >
           <Text style={tw`text-center text-xl font-bold`}>Sign In</Text>
         </TouchableOpacity>
         <Text style={tw`text-center text-md font-bold`}>or</Text>
         <TouchableOpacity
-          onPress={() => console.log("first") /* navigate.navigate() */}
+          onPress={
+            () => navigation.navigate("SignUpScreen") /* navigate.navigate() */
+          }
         >
           <Text style={tw`text-center text-xl font-bold`}>Log In</Text>
         </TouchableOpacity>
@@ -30,4 +39,4 @@ const Hscreen = () => {
   );
 };
 
-export default Hscreen;
+export default IndexScreen;

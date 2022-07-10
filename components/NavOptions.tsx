@@ -4,7 +4,8 @@ import tw from "../utils/tailwind";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../App";
+import { RootStackParamList } from "./navigation/types";
+
 type Props = {};
 
 type mapScreenProp = StackNavigationProp<RootStackParamList, "HomeScreen">;
