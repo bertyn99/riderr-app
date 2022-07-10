@@ -7,6 +7,7 @@ import BasicButton from "../../components/basic/BasicButton";
 import SocialButton from "../../components/socialButton";
 import { useNavigation } from "@react-navigation/native";
 import { authSignUpScreenProp } from "../../components/navigation/types";
+import { useForm } from "react-hook-form";
 const SignUpScreen = () => {
   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
@@ -14,7 +15,7 @@ const SignUpScreen = () => {
   const [password, setPassword] = React.useState("");
   const [passwordRepeat, setPasswordRepeat] = React.useState("");
   const navigation = useNavigation<authSignUpScreenProp>();
-
+  const { control, handleSubmit } = useForm();
   const handleSignIn = () => {
     console.warn("Sign In");
   };
@@ -32,31 +33,18 @@ const SignUpScreen = () => {
           Create a account
         </Text>
         <View style={tw`w-3/4 items-center justify-between`}>
-          <BasicInput
-            placeholder="Email"
-            value={email}
-            setValue={setEmail}
-          ></BasicInput>
-          <BasicInput
-            placeholder="First Name"
-            value={firstName}
-            setValue={setFirstName}
-          ></BasicInput>
-          <BasicInput
-            placeholder="Last Name"
-            value={lastName}
-            setValue={setLastName}
-          ></BasicInput>
+          <BasicInput placeholder="Email" control={control}></BasicInput>
+          <BasicInput placeholder="First Name" control={control}></BasicInput>
+          <BasicInput placeholder="Last Name" control={control}></BasicInput>
           <BasicInput
             placeholder="Password"
-            value={password}
-            setValue={setPassword}
+            control={control}
+            name="Password"
             hide={true}
           ></BasicInput>
           <BasicInput
             placeholder="Password"
-            value={passwordRepeat}
-            setValue={setPasswordRepeat}
+            control={control}
             hide={true}
           ></BasicInput>
           <Text style={tw` font-semibold mt-2`}>

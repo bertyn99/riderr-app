@@ -7,12 +7,16 @@ import BasicButton from "../../components/basic/BasicButton";
 import SocialButton from "../../components/socialButton";
 import { useNavigation } from "@react-navigation/native";
 import { authSignInScreenProp } from "../../components/navigation/types";
+import { useForm } from "react-hook-form";
+
 const SignInScreen = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigation = useNavigation<authSignInScreenProp>();
+  const { control, handleSubmit } = useForm();
   const handleSignIn = () => {
-    console.warn("Sign In");
+    console.log("ici");
+    navigation.navigate("HomeScreen");
   };
 
   return (
@@ -25,17 +29,17 @@ const SignInScreen = () => {
       <View style={tw`w-3/4 items-center justify-between`}>
         <BasicInput
           placeholder="Email"
-          value={email}
-          setValue={setEmail}
+          control={control}
+          name="Email"
         ></BasicInput>
         <BasicInput
           placeholder="Password"
-          value={password}
-          setValue={setPassword}
+          control={control}
+          name="Password"
           hide={true}
         ></BasicInput>
 
-        <BasicButton text="Connexion" fn={() => handleSignIn}></BasicButton>
+        <BasicButton text="Connexion" fn={handleSignIn}></BasicButton>
         <BasicButton
           text="Forgot password?"
           type="tertiary"

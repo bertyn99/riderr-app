@@ -5,9 +5,11 @@ import BasicInput from "../../components/basic/BasicInput";
 import BasicButton from "../../components/basic/BasicButton";
 import { useNavigation } from "@react-navigation/native";
 import { authForgotScreenProp } from "../../components/navigation/types";
+import { useForm } from "react-hook-form";
 const ForgotPasswordScreen = () => {
   const [email, setEmail] = React.useState("");
   const navigation = useNavigation<authForgotScreenProp>();
+  const { control, handleSubmit } = useForm();
   const handleCode = () => {
     navigation.navigate("ResetPasswordScreen");
   };
@@ -18,11 +20,7 @@ const ForgotPasswordScreen = () => {
       </Text>
       <View style={tw`w-3/4 items-center justify-between mt-14`}>
         <Text style={tw`w-full  font-bold mt-2`}>Email</Text>
-        <BasicInput
-          placeholder="Email "
-          value={email}
-          setValue={setEmail}
-        ></BasicInput>
+        <BasicInput placeholder="Email " control={control}></BasicInput>
 
         <BasicButton text="Confirm" fn={handleCode}></BasicButton>
         <BasicButton

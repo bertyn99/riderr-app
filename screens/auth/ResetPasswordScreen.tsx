@@ -5,10 +5,12 @@ import BasicInput from "../../components/basic/BasicInput";
 import BasicButton from "../../components/basic/BasicButton";
 import { useNavigation } from "@react-navigation/native";
 import { authResetScreenProp } from "../../components/navigation/types";
+import { useForm } from "react-hook-form";
 const ResetPasswordScreen = () => {
   const [password, setPassword] = React.useState("");
   const [newPassword, setNewPassword] = React.useState("");
   const navigation = useNavigation<authResetScreenProp>();
+  const { control, handleSubmit } = useForm();
   const handleCode = () => {
     navigation.navigate("HomeScreen");
   };
@@ -19,18 +21,10 @@ const ResetPasswordScreen = () => {
       </Text>
       <View style={tw`w-3/4 items-center justify-between mt-14`}>
         <Text style={tw`w-full  font-bold mt-2`}>Password</Text>
-        <BasicInput
-          placeholder="Old Password "
-          value={password}
-          setValue={setPassword}
-        ></BasicInput>
+        <BasicInput placeholder="Old Password " control={control}></BasicInput>
 
         <Text style={tw`w-full  font-bold mt-2`}>New Password</Text>
-        <BasicInput
-          placeholder="New password"
-          value={newPassword}
-          setValue={setNewPassword}
-        ></BasicInput>
+        <BasicInput placeholder="New password" control={control}></BasicInput>
         <BasicButton text="Confirm" fn={handleCode}></BasicButton>
         <BasicButton
           text="Back to SignIn"
