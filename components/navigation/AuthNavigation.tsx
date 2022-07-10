@@ -12,6 +12,7 @@ import SignUpScreen from "../../screens/auth/SignUpScreen";
 import { AuthStackParams } from "./types";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ForgotPasswordScreen from "../../screens/auth/ForgotPasswordScreen";
+import ResetPasswordScreen from "../../screens/auth/ResetPasswordScreen";
 
 const AuthNavigation = () => {
   const Auth = createNativeStackNavigator<AuthStackParams>();
@@ -35,6 +36,11 @@ const AuthNavigation = () => {
       <Auth.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
+        options={{ headerShown: false }}
+      />
+      <Auth.Screen
+        name="ResetPasswordScreen"
+        component={ResetPasswordScreen}
         options={{ headerShown: false }}
       />
     </Auth.Navigator>

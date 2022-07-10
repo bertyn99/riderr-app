@@ -38,3 +38,13 @@ export type authSignUpScreenProp = NativeStackNavigationProp<
   AuthStackParams,
   "ForgotPasswordScreen" | "SignInScreen"
 >;
+
+export type authForgotScreenProp = NativeStackNavigationProp<
+  AuthStackParams,
+  "SignInScreen" | "ResetPasswordScreen"
+>;
+
+export type authResetScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "HomeScreen"
+>;

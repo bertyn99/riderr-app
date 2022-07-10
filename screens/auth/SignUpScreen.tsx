@@ -5,12 +5,16 @@ import tw from "../../utils/tailwind";
 import BasicInput from "../../components/basic/BasicInput";
 import BasicButton from "../../components/basic/BasicButton";
 import SocialButton from "../../components/socialButton";
+import { useNavigation } from "@react-navigation/native";
+import { authSignUpScreenProp } from "../../components/navigation/types";
 const SignUpScreen = () => {
   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordRepeat, setPasswordRepeat] = React.useState("");
+  const navigation = useNavigation<authSignUpScreenProp>();
+
   const handleSignIn = () => {
     console.warn("Sign In");
   };
@@ -71,7 +75,7 @@ const SignUpScreen = () => {
           <BasicButton
             text="have you account? Sign In"
             type="tertiary"
-            fn={() => console.warn("forgot password")}
+            fn={() => navigation.navigate("SignInScreen")}
           ></BasicButton>
         </View>
       </View>
