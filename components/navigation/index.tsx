@@ -17,8 +17,8 @@ const Navigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <NavigationContainer>
-      <SafeAreaProvider style={tw`pt-8`}>
-        <Stack.Navigator initialRouteName="AuthScreen">
+      <SafeAreaProvider>
+        <Stack.Navigator initialRouteName="HomeScreen">
           <Stack.Screen
             name="HomeScreen"
             component={HomeScreen}
