@@ -1,7 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import navReducer from "./slice/navSlice";
-import { combineReducers } from "@reduxjs/toolkit";
-const rootReducer = combineReducers({ nav: navReducer });
+import { rootApi } from "../services/rootApiSlice";
+const rootReducer = combineReducers({
+  nav: navReducer,
+  [rootApi.reducerPath]: rootApi.reducer,
+});
 
 export type RootState = ReturnType<typeof rootReducer>;
 
