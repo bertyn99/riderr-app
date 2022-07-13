@@ -1,9 +1,9 @@
-export type signIn = {
+export type ISignIn = {
   email: string;
   password: string;
 };
 
-export type signUp = signIn & {
+export type ISignUp = ISignIn & {
   firstName: string;
   lastName: string;
   tel: string;
