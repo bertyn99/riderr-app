@@ -3,7 +3,7 @@ import { rootApi } from "../rootApiSlice";
 
 export const AuthApi = rootApi.injectEndpoints({
   endpoints: (build) => ({
-    login: build.query<ISignIn, void>({
+    login: build.mutation<any, ISignIn>({
       query: (form) => {
         return {
           url: "/auth/signin",
@@ -12,7 +12,7 @@ export const AuthApi = rootApi.injectEndpoints({
         };
       },
     }),
-    register: build.query<ISignUp, void>({
+    register: build.mutation<any, ISignUp>({
       query: (form) => {
         return {
           url: "/auth/signup",
@@ -23,3 +23,5 @@ export const AuthApi = rootApi.injectEndpoints({
     }),
   }),
 });
+
+export const { useLoginMutation, useRegisterMutation } = AuthApi;
