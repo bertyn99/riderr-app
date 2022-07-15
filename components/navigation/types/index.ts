@@ -41,9 +41,12 @@ export type authSignInScreenProp = CompositeNavigationProp<
   NativeStackNavigationProp<RootStackParamList, "HomeScreen">
 >;
 
-export type authSignUpScreenProp = NativeStackNavigationProp<
-  AuthStackParams,
-  "ForgotPasswordScreen" | "SignInScreen"
+export type authSignUpScreenProp = CompositeNavigationProp<
+  NativeStackNavigationProp<
+    AuthStackParams,
+    "ForgotPasswordScreen" | "SignInScreen"
+  >,
+  NativeStackNavigationProp<RootStackParamList, "HomeScreen">
 >;
 
 export type authForgotScreenProp = NativeStackNavigationProp<
