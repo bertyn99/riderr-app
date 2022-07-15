@@ -6,7 +6,7 @@ export const AuthApi = rootApi.injectEndpoints({
     getProfile: build.query<IUser, void>({
       query: (form) => "/user/<MdAccessAlarm />e",
     }),
-    updateUSer: build.query<IUser, void>({
+    updateUser: build.query<IUser, void>({
       query: (form) => {
         return {
           url: "/user/me",
