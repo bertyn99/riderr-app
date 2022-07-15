@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   nav: navReducer,
   user: userReducer,
   driver: driverReducer,
-  trip: tripReducer,
+  trip: tripsReducer,
 
   [rootApi.reducerPath]: rootApi.reducer,
 });

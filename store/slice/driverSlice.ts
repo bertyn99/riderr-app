@@ -22,14 +22,14 @@ export const driverSlice = createSlice({
   initialState,
 
   reducers: {
-    setUser: (state: IDriver, action: PayloadAction<IDriver>) => {
+    setDriver: (state: IDriver, action: PayloadAction<IDriver>) => {
       state = action.payload;
     },
-    logOut: (state: IDriver) => {
+    logOutDriver: (state: IDriver) => {
       state = initialState;
     },
   },
 });
 
-export const { setUser } = driverSlice.actions;
+export const { setDriver, logOutDriver } = driverSlice.actions;
 export default driverSlice.reducer;

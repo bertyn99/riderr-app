@@ -1,4 +1,4 @@
-import { Trips } from "./trips.type";
+import { ITrips } from "./trips.type";
 
 export type IUser = {
   email: string;
@@ -6,7 +6,7 @@ export type IUser = {
   lastName: string;
   tel: string;
   password?: string;
-  trips?: Trips[];
+  trips?: ITrips[];
   acces_token: string;
   refresh_token: string;
 };

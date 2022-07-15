@@ -1,11 +1,11 @@
-import { Transport, Trips } from "./trips.type";
+import { Transport, ITrips } from "./trips.type";
 import { IUser } from "./user.type";
 
 export type IDriver = IUser & {
   isPro: boolean;
   documents: string[];
   vehicle?: Vehicle;
-  trips?: Trips[];
+  trips?: ITrips[];
 };
 export type Vehicle = {
   type: Transport;
