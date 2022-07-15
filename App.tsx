@@ -1,13 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
-import { store } from "./store/index";
+import { persistor, store } from "./store/index";
 
 import Navigation from "./components/navigation";
+import { PersistGate } from "redux-persist/integration/react";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <Navigation></Navigation>
+      <PersistGate loading={null} persistor={persistor}>
+        <Navigation></Navigation>
+      </PersistGate>
     </Provider>
   );
 }
