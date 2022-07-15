@@ -18,7 +18,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        <Stack.Navigator initialRouteName="HomeScreen">
+        <Stack.Navigator initialRouteName="AuthScreen">
           <Stack.Screen
             name="HomeScreen"
             component={HomeScreen}
