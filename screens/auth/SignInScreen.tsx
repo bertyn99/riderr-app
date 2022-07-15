@@ -8,14 +8,26 @@ import SocialButton from "../../components/socialButton";
 import { useNavigation } from "@react-navigation/native";
 import { authSignInScreenProp } from "../../components/navigation/types";
 import { useForm } from "react-hook-form";
+import { useLoginMutation } from "../../services/api/authSlice";
+import { ISignIn } from "../../types/auth.type";
 
 const SignInScreen = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigation = useNavigation<authSignInScreenProp>();
+  const [login, { isLoading }] = useLoginMutation();
   const { control, handleSubmit } = useForm();
-  const handleSignIn = () => {
-    console.log("ici");
+  const handleSignIn = async (data: any) => {
+    try {
+      console.log(data);
+      const user = await login(data).unwrap();
+      console.warn(user);
+      if (user) {
+        navigation.navigate("HomeScreen");
+      }
+    } catch (err) {
+      console.log(err);
+    }
     navigation.navigate("HomeScreen");
   };
 
@@ -30,16 +42,19 @@ const SignInScreen = () => {
         <BasicInput
           placeholder="Email"
           control={control}
-          name="Email"
+          name="email"
         ></BasicInput>
         <BasicInput
           placeholder="Password"
           control={control}
-          name="Password"
+          name="password"
           hide={true}
         ></BasicInput>
 
-        <BasicButton text="Connexion" fn={handleSignIn}></BasicButton>
+        <BasicButton
+          text="Connexion"
+          fn={handleSubmit(handleSignIn)}
+        ></BasicButton>
         <BasicButton
           text="Forgot password?"
           type="tertiary"

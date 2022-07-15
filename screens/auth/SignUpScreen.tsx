@@ -8,16 +8,31 @@ import SocialButton from "../../components/socialButton";
 import { useNavigation } from "@react-navigation/native";
 import { authSignUpScreenProp } from "../../components/navigation/types";
 import { useForm } from "react-hook-form";
+import { useRegisterMutation } from "../../services/api/authSlice";
+import { ISignUp } from "../../types/auth.type";
+
+import { BACK_URL } from "@env";
 const SignUpScreen = () => {
   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [register, { isLoading, error }] = useRegisterMutation();
   const [passwordRepeat, setPasswordRepeat] = React.useState("");
   const navigation = useNavigation<authSignUpScreenProp>();
   const { control, handleSubmit } = useForm();
-  const handleSignIn = () => {
-    console.warn("Sign In");
+
+  const handleSignIn = async (data: any) => {
+    try {
+      console.log(data);
+      const user = await register(data).unwrap();
+      console.warn(user);
+      if (user) {
+        navigation.navigate("HomeScreen");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const gotToSIgnUp = () => {
@@ -33,20 +48,37 @@ const SignUpScreen = () => {
           Create a account
         </Text>
         <View style={tw`w-3/4 items-center justify-between`}>
-          <BasicInput placeholder="Email" control={control}></BasicInput>
-          <BasicInput placeholder="First Name" control={control}></BasicInput>
-          <BasicInput placeholder="Last Name" control={control}></BasicInput>
           <BasicInput
-            placeholder="Password"
+            placeholder="Email"
+            name="email"
             control={control}
-            name="Password"
-            hide={true}
+          ></BasicInput>
+          <BasicInput
+            placeholder="First Name"
+            name="firstName"
+            control={control}
+          ></BasicInput>
+          <BasicInput
+            placeholder="Last Name"
+            name="lastName"
+            control={control}
           ></BasicInput>
           <BasicInput
             placeholder="Password"
             control={control}
+            name="password"
             hide={true}
           ></BasicInput>
+          <BasicInput
+            placeholder="Telephone"
+            control={control}
+            name="tel"
+          ></BasicInput>
+          {/*         <BasicInput
+            placeholder="Password"
+            control={control}
+            hide={true}
+          ></BasicInput> */}
           <Text style={tw` font-semibold mt-2`}>
             MapScreenBy registrering, you confirm that you accept our
             <Text style={tw` text-lime-800 `} onPress={onTermsOfUsePressed}>
@@ -58,7 +90,10 @@ const SignUpScreen = () => {
               Privacy Policy
             </Text>
           </Text>
-          <BasicButton text="Inscription" fn={() => handleSignIn}></BasicButton>
+          <BasicButton
+            text="Inscription"
+            fn={handleSubmit(handleSignIn)}
+          ></BasicButton>
           <SocialButton></SocialButton>
           <BasicButton
             text="have you account? Sign In"
