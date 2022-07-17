@@ -3,28 +3,28 @@ import {
   NavigatorScreenParams,
   RouteGroupConfig,
   CompositeNavigationProp,
+  RouteProp,
 } from "@react-navigation/native";
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-import type { RouteProp } from "@react-navigation/native";
 
 export type RootStackParamList = {
   HomeScreen: undefined;
-  MapScreen: undefined;
+  MapDriverScreen: undefined;
   AuthScreen: NavigatorScreenParams<AuthStackParams>;
   Profile: { me: undefined };
 };
 
 export type AuthStackParams = {
   UserOrDriverScreen: undefined;
-  IndexScreen: undefined;
-  SignInScreen: { type: "user" | "driver" };
-  SignUpScreen: { type: "user" | "driver" };
-  ConfirmEmailScreen: { type: "user" | "driver" };
-  ForgotPasswordScreen: { type: "user" | "driver" };
-  ResetPasswordScreen: { type: "user" | "driver" };
+  IndexScreen: typeClient;
+  SignInScreen: typeClient;
+  SignUpScreen: typeClient;
+  ConfirmEmailScreen: typeClient;
+  ForgotPasswordScreen: typeClient;
+  ResetPasswordScreen: typeClient;
 };
 
 //auth
@@ -32,6 +32,11 @@ export type AuthStackParams = {
 export type authIndexScreenProp = NativeStackNavigationProp<
   AuthStackParams,
   "SignInScreen" | "SignUpScreen"
+>;
+
+export type userOrDriverScreenProp = NativeStackNavigationProp<
+  AuthStackParams,
+  "IndexScreen"
 >;
 
 export type authSignInScreenProp = CompositeNavigationProp<
@@ -60,7 +65,16 @@ export type authResetScreenProp = NativeStackNavigationProp<
   "HomeScreen"
 >;
 
+export type authResetScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "HomeScreen"
+>;
+
 //route props
+
+export type typeClient = {
+  type: "user" | "driver";
+};
 export type IndexScreenRouteProp = RouteProp<AuthStackParams, "IndexScreen">;
 
 export type SignInScreenRouteProp = RouteProp<AuthStackParams, "SignInScreen">;

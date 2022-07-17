@@ -6,10 +6,14 @@ import BasicInput from "../../components/basic/BasicInput";
 import BasicButton from "../../components/basic/BasicButton";
 import SocialButton from "../../components/socialButton";
 import { useNavigation } from "@react-navigation/native";
-import { authSignUpScreenProp } from "../../components/navigation/types";
+import {
+  authSignUpScreenProp,
+  SignUpScreenRouteProp,
+} from "../../components/navigation/types";
 import { useForm } from "react-hook-form";
 import { useRegisterMutation } from "../../services/api/authSlice";
 import { ISignUp } from "../../types/auth.type";
+import { useRoute } from "@react-navigation/native";
 
 import { BACK_URL } from "@env";
 const SignUpScreen = () => {
@@ -22,6 +26,8 @@ const SignUpScreen = () => {
   const navigation = useNavigation<authSignUpScreenProp>();
   const { control, handleSubmit } = useForm();
 
+  const route = useRoute<SignUpScreenRouteProp>();
+  const { type } = route.params;
   const handleSignIn = async (data: any) => {
     try {
       console.log(data);

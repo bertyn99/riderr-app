@@ -12,7 +12,7 @@ const initialState: IDriver = {
   isPro: false,
   documents: [],
   trips: [],
-  acces_token: "",
+  access_token: "",
   refresh_token: "",
 };
 

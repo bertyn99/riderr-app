@@ -21,7 +21,30 @@ export const AuthApi = rootApi.injectEndpoints({
         };
       },
     }),
+    loginDriver: build.mutation<any, ISignIn>({
+      query: (form) => {
+        return {
+          url: "/auth/driver/signin",
+          method: "POST",
+          body: form,
+        };
+      },
+    }),
+    registerDriver: build.mutation<any, ISignUp>({
+      query: (form) => {
+        return {
+          url: "/auth/driver/signup",
+          method: "POST",
+          body: form,
+        };
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = AuthApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useRegisterDriverMutation,
+  useLoginDriverMutation,
+} = AuthApi;

@@ -22,11 +22,11 @@ export const userSlice = createSlice({
       console.log("setUser", { ...state, ...action.payload });
       return (state = { ...state, ...action.payload });
     },
-    logOut: (state: IUser) => {
-      return (state = initialState);
+    logOut(state: IUser) {
+      return (state = { ...initialState });
     },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, logOut } = userSlice.actions;
 export default userSlice.reducer;

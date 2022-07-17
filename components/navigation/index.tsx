@@ -12,28 +12,61 @@ import { ComponentType } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./types";
 import tw from "../../utils/tailwind";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/index";
+import SplashScreen from "../../screens/SplashScreen";
+import React from "react";
 const Navigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
+  const [isLoading, setIsLoading] = React.useState(true);
+  const user = useSelector((state: RootState) => state.user);
+  const driver = useSelector((state: RootState) => state.driver);
+
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        <Stack.Navigator initialRouteName="AuthScreen">
-          <Stack.Screen
-            name="HomeScreen"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="MapScreen"
-            component={MapScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="AuthScreen"
-            component={AuthScreen}
-            options={{ headerShown: false }}
-          />
+        <Stack.Navigator>
+          {user.access_token == null && user.refresh_token == null ? (
+            <Stack.Screen
+              name="AuthScreen"
+              component={AuthScreen}
+              options={{ headerShown: false }}
+            />
+          ) : (
+            <>
+              <Stack.Screen
+                name="HomeScreen"
+                component={HomeScreen}
+                options={{ headerShown: false }}
+              />
+              {/*   <Stack.Screen
+                name="MapScreen"
+                component={MapScreen}
+                options={{ headerShown: false }}
+              /> */}
+            </>
+          )}
+
+          {driver.access_token == null && user.refresh_token == null ? (
+            <Stack.Screen
+              name="AuthScreen"
+              component={AuthScreen}
+              options={{ headerShown: false }}
+            />
+          ) : (
+            <>
+              <Stack.Screen
+                name="MapDriverScreen"
+                component={HomeScreen}
+                options={{ headerShown: false }}
+              />
+              {/*   <Stack.Screen
+                name="MapScreen"
+                component={MapScreen}
+                options={{ headerShown: false }}
+              /> */}
+            </>
+          )}
         </Stack.Navigator>
       </SafeAreaProvider>
     </NavigationContainer>
