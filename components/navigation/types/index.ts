@@ -8,6 +8,7 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
+import type { RouteProp } from "@react-navigation/native";
 
 export type RootStackParamList = {
   HomeScreen: undefined;
@@ -17,13 +18,13 @@ export type RootStackParamList = {
 };
 
 export type AuthStackParams = {
-  navigate(): void;
+  UserOrDriverScreen: undefined;
   IndexScreen: undefined;
-  SignInScreen: undefined;
-  SignUpScreen: undefined;
-  ConfirmEmailScreen: undefined;
-  ForgotPasswordScreen: undefined;
-  ResetPasswordScreen: undefined;
+  SignInScreen: { type: "user" | "driver" };
+  SignUpScreen: { type: "user" | "driver" };
+  ConfirmEmailScreen: { type: "user" | "driver" };
+  ForgotPasswordScreen: { type: "user" | "driver" };
+  ResetPasswordScreen: { type: "user" | "driver" };
 };
 
 //auth
@@ -57,4 +58,18 @@ export type authForgotScreenProp = NativeStackNavigationProp<
 export type authResetScreenProp = NativeStackNavigationProp<
   RootStackParamList,
   "HomeScreen"
+>;
+
+//route props
+export type IndexScreenRouteProp = RouteProp<AuthStackParams, "IndexScreen">;
+
+export type SignInScreenRouteProp = RouteProp<AuthStackParams, "SignInScreen">;
+export type SignUpScreenRouteProp = RouteProp<AuthStackParams, "SignUpScreen">;
+export type ForgotPasswordScreenRouteProp = RouteProp<
+  AuthStackParams,
+  "ForgotPasswordScreen"
+>;
+export type ResetPasswordScreenRouteProp = RouteProp<
+  AuthStackParams,
+  "ResetPasswordScreen"
 >;
