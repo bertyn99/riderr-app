@@ -18,7 +18,7 @@ import UserOrDriverScreen from "../../screens/auth/UserOrDriverScreen";
 const AuthNavigation = () => {
   const Auth = createNativeStackNavigator<AuthStackParams>();
   return (
-    <Auth.Navigator initialRouteName="IndexScreen">
+    <Auth.Navigator initialRouteName="UserOrDriverScreen">
       <Auth.Screen
         name="IndexScreen"
         component={IndexScreen}
