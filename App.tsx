@@ -4,11 +4,18 @@ import { persistor, store } from "./store/index";
 
 import Navigation from "./components/navigation";
 import { PersistGate } from "redux-persist/integration/react";
+import SplashScreen from "./screens/SplashScreen";
+if (__DEV__) {
+  import("./ReactotronConfig").then(() => console.log("Reactotron Configured"));
+}
 
 export default function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate
+        loading={<SplashScreen></SplashScreen>}
+        persistor={persistor}
+      >
         <Navigation></Navigation>
       </PersistGate>
     </Provider>
