@@ -4,12 +4,12 @@ import { RootState } from "../index";
 
 // Define the initial state using that type
 const initialState: IUser = {
-  email: "",
-  firstName: "",
-  lastName: "",
-  tel: "",
-  acces_token: "",
-  refresh_token: "",
+  email: null,
+  firstName: null,
+  lastName: null,
+  tel: null,
+  access_token: null,
+  refresh_token: null,
 };
 
 export const userSlice = createSlice({
@@ -19,10 +19,11 @@ export const userSlice = createSlice({
 
   reducers: {
     setUser: (state: IUser, action: PayloadAction<IUser>) => {
-      state = action.payload;
+      console.log("setUser", { ...state, ...action.payload });
+      return (state = { ...state, ...action.payload });
     },
     logOut: (state: IUser) => {
-      state = initialState;
+      return (state = initialState);
     },
   },
 });
