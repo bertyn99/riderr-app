@@ -12,6 +12,7 @@ import {
 
 export type RootStackParamList = {
   HomeScreen: undefined;
+  TravelToScreen: undefined;
   MapDriverScreen: undefined;
   AuthScreen: NavigatorScreenParams<AuthStackParams>;
   Profile: { me: undefined };
@@ -65,11 +66,10 @@ export type authResetScreenProp = NativeStackNavigationProp<
   "HomeScreen"
 >;
 
-export type authResetScreenProp = NativeStackNavigationProp<
+export type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "HomeScreen"
+  "TravelToScreen"
 >;
-
 //route props
 
 export type typeClient = {

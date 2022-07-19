@@ -16,6 +16,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/index";
 import SplashScreen from "../../screens/SplashScreen";
 import React from "react";
+import TravelToScreen from "../../screens/user/TravelToScreen";
+import NavigateCard from "../NavigateCard";
+import NavigationCard from "../NavigationCard";
 const Navigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const [isLoading, setIsLoading] = React.useState(true);
@@ -38,6 +41,13 @@ const Navigation = () => {
                 name="HomeScreen"
                 component={HomeScreen}
                 options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="TravelToScreen"
+                component={TravelToScreen}
+                options={{
+                  headerTitle: (props) => <NavigationCard />,
+                }}
               />
               {/*   <Stack.Screen
                 name="MapScreen"
