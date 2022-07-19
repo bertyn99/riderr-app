@@ -88,14 +88,14 @@ const SignInScreen = () => {
         <BasicButton
           text="Forgot password?"
           type="tertiary"
-          fn={() => navigation.navigate("ForgotPasswordScreen")}
+          fn={() => navigation.navigate("ForgotPasswordScreen", { type: type })}
         ></BasicButton>
 
         <SocialButton></SocialButton>
         <BasicButton
           text="Dont have a account? Sign Up"
           type="secondary"
-          fn={() => navigation.navigate("SignUpScreen")}
+          fn={() => navigation.navigate("SignUpScreen", { type: type })}
         ></BasicButton>
       </View>
     </View>

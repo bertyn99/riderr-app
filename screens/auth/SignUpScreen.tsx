@@ -11,33 +11,55 @@ import {
   SignUpScreenRouteProp,
 } from "../../components/navigation/types";
 import { useForm } from "react-hook-form";
-import { useRegisterMutation } from "../../services/api/authSlice";
+import {
+  useRegisterDriverMutation,
+  useRegisterMutation,
+} from "../../services/api/authSlice";
 import { ISignUp } from "../../types/auth.type";
 import { useRoute } from "@react-navigation/native";
 
 import { BACK_URL } from "@env";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/slice/userSlice";
+import { setDriver } from "../../store/slice/driverSlice";
 const SignUpScreen = () => {
-  const [email, setEmail] = React.useState("");
+  /*   const [email, setEmail] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [password, setPassword] = React.useState(""); */
   const [register, { isLoading, error }] = useRegisterMutation();
+  const [registerDriver] = useRegisterDriverMutation();
   const [passwordRepeat, setPasswordRepeat] = React.useState("");
   const navigation = useNavigation<authSignUpScreenProp>();
   const { control, handleSubmit } = useForm();
 
-  const route = useRoute<SignUpScreenRouteProp>();
-  const { type } = route.params;
+  const { params } = useRoute<SignUpScreenRouteProp>();
+  const { type } = params;
+  const dispatch = useDispatch();
   const handleSignIn = async (data: any) => {
-    try {
-      console.log(data);
-      const user = await register(data).unwrap();
-      console.warn(user);
-      if (user) {
-        navigation.navigate("HomeScreen");
+    if (type == "user") {
+      try {
+        const user = await register(data).unwrap();
+        console.log("ici promise reslut");
+        console.warn(user);
+        if (user) {
+          dispatch(setUser(user));
+          /*   navigation.navigate("HomeScreen"); */
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      try {
+        const driver = await registerDriver(data).unwrap();
+        console.warn(driver);
+        if (driver) {
+          dispatch(setDriver(driver));
+          /*   navigation.navigate("HomeScreen"); */
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -104,7 +126,7 @@ const SignUpScreen = () => {
           <BasicButton
             text="have you account? Sign In"
             type="tertiary"
-            fn={() => navigation.navigate("SignInScreen")}
+            fn={() => navigation.navigate("SignInScreen", { type: type })}
           ></BasicButton>
         </View>
       </View>
