@@ -1,30 +1,89 @@
-import React from "react";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  GooglePlacesAutocomplete,
+  GooglePlacesAutocompleteRef,
+} from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setDestination, setOrigin } from "../store/slice/navSlice";
 import { View } from "react-native";
-const GooglePlacesInput = () => {
+import { useNavigation } from "@react-navigation/native";
+import { HomeScreenNavigationProp } from "./navigation/types";
+import tw from "../utils/tailwind";
+import { RootState } from "../store";
+const GooglePlacesInput = ({
+  position,
+  placeholder = "",
+}: {
+  position: "origin" | "destination";
+  placeholder: string;
+}) => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+  const origin = useSelector((state: RootState) => state.nav.origin);
+  const [input, setInput] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (position === "origin" && origin?.description) {
+      setInput(origin?.description);
+    }
+  }, []);
 
   return (
     <GooglePlacesAutocomplete
-      placeholder="Where From?"
-      styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
+      placeholder={placeholder}
+      styles={{
+        container: {
+          flex: 1,
+          backgroundColor: tw.color("neutral-300"),
+          margin: 4,
+        },
+        textInput: {
+          backgroundColor: tw.color("neutral-300"),
+          fontSize: 18,
+          color: "black",
+        },
+        listView: { backgroundColor: tw.color("neutral-300") },
+      }}
       nearbyPlacesAPI="GooglePlacesSearch"
       onPress={(data, details = null) => {
         // 'details' is provided when fetchDetails = true
-        dispatch(
-          setOrigin({
-            location: details!.geometry!.location,
-            description: data.description,
-          })
-        );
-        dispatch(setDestination(null));
+
+        if (details !== null) {
+          if (position == "origin") {
+            const { lat, lng } = details.geometry.location;
+            dispatch(
+              setOrigin({
+                lat: lat,
+                lng: lng,
+                description: data.description,
+              })
+            );
+            navigation.navigate("TravelToScreen");
+          }
+          if (position == "destination") {
+            console.log(details);
+            dispatch(
+              setDestination({
+                ...details!.geometry!.location,
+                description: data.description,
+              })
+            );
+            setInput(data.description);
+          }
+        }
       }}
       query={{
         key: GOOGLE_MAPS_APIKEY,
         language: "en",
+      }}
+      /*    currentLocation={position == "origin" ? true : false} */
+      /*     navigator.geolocation */
+      fetchDetails={true}
+      isRowScrollable={true}
+      textInputProps={{
+        onChangeText: (txt) => setInput(txt),
+        value: input,
       }}
       enablePoweredByContainer={false}
       minLength={2}
