@@ -4,10 +4,12 @@ import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import tw from "../utils/tailwind";
 import { useDispatch, useSelector } from "react-redux";
-import { selectOrigin } from "../store/slice/navSlice";
+import { selectOrigin, setOrigin } from "../store/slice/navSlice";
+import { Point } from "../types/trips.type";
 const Map = () => {
   const origin = useSelector(selectOrigin);
-  const [location, setLocation] = useState<any>(null);
+  const [location, setLocation] = useState<Point | null>(null);
+
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const dispatch = useDispatch();
 
@@ -20,29 +22,50 @@ const Map = () => {
       }
 
       /*  dispatch(setOrigin(origin)); */
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      let {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync({});
+
+      let regionName = await Location.reverseGeocodeAsync({
+        longitude,
+        latitude,
+      });
+      setLocation({
+        lat: latitude,
+        lng: longitude,
+        description: regionName[0].streetNumber + " " + regionName[0].street,
+      });
+      if (location) {
+        dispatch(
+          setOrigin({
+            lat: location.lat,
+            lng: location.lng,
+            description: location.description,
+          })
+        );
+      }
+
       console.log(location);
     })();
   }, []);
 
   return (
     <>
-      {location && location.coords && (
+      {location && location.lat && location.lng && (
         <MapView
           mapType="mutedStandard"
           style={tw`flex-1`}
           initialRegion={{
-            latitude: location!.coords.latitude,
-            longitude: location!.coords.longitude,
+            latitude: location.lat,
+            longitude: location.lng,
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           }}
         >
           <Marker
             coordinate={{
-              latitude: location!.coords.latitude,
-              longitude: location!.coords.longitude,
+              latitude: location.lat,
+              longitude: location.lng,
             }}
             title="Origin"
             identifier="origin"
