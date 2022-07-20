@@ -15,6 +15,7 @@ const HomeScreen = (props: Props) => {
   const user = useSelector((state: RootState) => state.user);
   const driver = useSelector((state: RootState) => state.driver);
   const dispatch = useDispatch();
+
   /*   const navigation = useNavigation<>(); */
   console.log(user);
   return (
@@ -31,7 +32,7 @@ const HomeScreen = (props: Props) => {
           )}
           <NavigateCard></NavigateCard>
 
-          <Button
+          {/*  <Button
             title="Logout"
             onPress={async () => {
               console.log(user);
@@ -42,7 +43,7 @@ const HomeScreen = (props: Props) => {
             }}
           >
             purge
-          </Button>
+          </Button> */}
         </View>
       </View>
     </SafeAreaView>

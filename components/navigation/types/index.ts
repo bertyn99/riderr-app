@@ -13,6 +13,11 @@ import {
 export type RootStackParamList = {
   HomeScreen: undefined;
   TravelToScreen: undefined;
+  WaintingUserScreen: undefined;
+  WaitingDriverScreen: undefined;
+  TripsConfirmScreen: undefined;
+  TripsScreen: undefined;
+
   MapDriverScreen: undefined;
   AuthScreen: NavigatorScreenParams<AuthStackParams>;
   Profile: { me: undefined };
@@ -65,11 +70,31 @@ export type authResetScreenProp = NativeStackNavigationProp<
   RootStackParamList,
   "HomeScreen"
 >;
-
+//user routes
 export type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   "TravelToScreen"
 >;
+
+export type TravelToScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "TripsConfirmScreen"
+>;
+
+export type TripsConfirmScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "WaitingDriverScreen"
+>;
+//wainting screen navigation
+export type WaitingUserScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "TripsScreen"
+>;
+export type WaitingDriverScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "TripsScreen"
+>;
+
 //route props
 
 export type typeClient = {

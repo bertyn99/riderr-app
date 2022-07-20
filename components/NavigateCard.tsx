@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GooglePlacesInput from "./GooglePlacesInput";
 import tw from "../utils/tailwind";
@@ -9,10 +9,16 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
+import { setTransport } from "../store/slice/tripsSlice";
 
 const NavigateCard = () => {
   const [transportSelected, setTransportSelected] =
     React.useState<Transport | null>(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setTransport(transportSelected));
+  }, [transportSelected]);
   return (
     <SafeAreaView style={tw`bg-white h-full  flex-1 items-center `}>
       <Text style={tw`text-center py-1 text-xl`}>Good Morning, Sonny </Text>

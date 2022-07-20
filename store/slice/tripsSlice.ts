@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ITrips } from "../../types/trips.type";
+import { ITrips, Transport } from "../../types/trips.type";
 
 const initialState: ITrips = {
   origin: null,
   destination: null,
-  price: null,
+  timeDeparture: null,
   typeVehicle: null,
+  price: null,
   rating: null,
   createdAt: null,
 };
@@ -16,11 +17,18 @@ export const tripsSlice = createSlice({
   initialState,
 
   reducers: {
+    setTransport: (state: ITrips, action: PayloadAction<Transport | null>) => {
+      state.typeVehicle = action.payload;
+    },
     setTrips: (state: ITrips, action: PayloadAction<ITrips>) => {
-      state = action.payload;
+      console.log(action.payload);
+      return (state = { ...state, ...action.payload });
+    },
+    deleteTrips: (state: ITrips, action: PayloadAction<ITrips>) => {
+      state = initialState;
     },
   },
 });
 
-export const { setTrips } = tripsSlice.actions;
+export const { setTrips, setTransport, deleteTrips } = tripsSlice.actions;
 export default tripsSlice.reducer;

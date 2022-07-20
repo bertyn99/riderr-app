@@ -21,7 +21,7 @@ const NavigationCard = () => {
             <Ionicons name="locate" size={24} color="black" />
             <Entypo name="location-pin" size={24} color="black" />
           </View>
-          <View style={tw`w-full max-w-4/5`}>
+          <View style={tw`w-full max-w-64`}>
             <GooglePlacesInput
               position={"origin"}
               placeholder={"Ici de partir"}

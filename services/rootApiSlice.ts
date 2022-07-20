@@ -7,12 +7,12 @@ export const rootApi = createApi({
     baseUrl: BACKEND_URL, // e.g. https://yourapi.com
     mode: "cors",
     prepareHeaders: async (headers) => {
-      const jsonUser = await AsyncStorage.getItem("@rdr_user");
+      const jsonUser = await AsyncStorage.getItem("user");
       const user = jsonUser ? JSON.parse(jsonUser) : null;
       const hasUser = !!user && !!user!.accces_token;
 
       if (hasUser) {
-        headers.set("Authorization", `Token ${user.userToken}`);
+        headers.set("Authorization", `Token ${user.accces_token}`);
       }
 
       headers.set("Content-Type", "application/json");

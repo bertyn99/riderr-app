@@ -19,6 +19,8 @@ import React from "react";
 import TravelToScreen from "../../screens/user/TravelToScreen";
 import NavigateCard from "../NavigateCard";
 import NavigationCard from "../NavigationCard";
+import TripsConfirmScreen from "../../screens/user/TripsConfirmScreen";
+import WaitingDriverScreen from "../../screens/commons/WaitingDriverScreen";
 const Navigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const [isLoading, setIsLoading] = React.useState(true);
@@ -49,11 +51,16 @@ const Navigation = () => {
                   headerTitle: (props) => <NavigationCard />,
                 }}
               />
-              {/*   <Stack.Screen
-                name="MapScreen"
-                component={MapScreen}
+              <Stack.Screen
+                name="TripsConfirmScreen"
+                component={TripsConfirmScreen}
                 options={{ headerShown: false }}
-              /> */}
+              />
+              <Stack.Screen
+                name="WaitingDriverScreen"
+                component={WaitingDriverScreen}
+                options={{ headerShown: false }}
+              />
             </>
           )}
 

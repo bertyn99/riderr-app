@@ -2,9 +2,11 @@ export type ITrips = {
   id?: string;
   origin: Point | null;
   destination: Point | null;
-  typeVehicle: Transport | null;
-  price: Number | null;
-  rating: Number | null;
+  typeVehicle?: Transport | null;
+  timeDeparture: string | null;
+  totalTime?: number;
+  price: number | null;
+  rating: number | null;
   userId?: string;
   driverId?: string;
   createdAt: Date | null;
