@@ -43,7 +43,7 @@ const Navigation = () => {
             <>
               <Stack.Screen
                 name="HomeScreen"
-                component={MyProfileDrawer}
+                component={HomeScreen}
                 options={{ headerShown: false }}
               />
               <Stack.Screen

@@ -41,7 +41,8 @@
     "redux-persist": "^6.0.0",
     "twrnc": "^3.3.2",
     "expo-dev-client": "~1.0.1",
-    "expo-splash-screen": "~0.15.1"
+    "expo-splash-screen": "~0.15.1",
+    "expo-updates": "~0.13.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -19,7 +19,7 @@ export type DrawerStackParams = {
 };
 
 export type RootStackParamList = {
-  HomeScreen: DrawerScreenProps<DrawerStackParams>;
+  HomeScreen: DrawerScreenProps<DrawerStackParams> | undefined;
   TravelToScreen: undefined;
   WaintingUserScreen: undefined;
   WaitingDriverScreen: undefined;
