@@ -78,7 +78,7 @@ const WaintingTripsScreen = () => {
                 latitude: voiture.lat,
                 longitude: voiture.lng,
               }}
-              apikey={GOOGLE_MAPS_APIKEY}
+              apikey={process.env.GOOGLE_MAPS_APIKEY || GOOGLE_MAPS_APIKEY}
               mode="DRIVING"
               strokeWidth={3}
               strokeColor="green"

@@ -4,7 +4,7 @@ import { BACKEND_URL } from "@env";
 // Define a service using a base URL and expected endpoints
 export const rootApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: BACKEND_URL, // e.g. https://yourapi.com
+    baseUrl: process.env.BACKEND_URL || BACKEND_URL, // e.g. https://yourapi.com
     mode: "cors",
     prepareHeaders: async (headers) => {
       const jsonUser = await AsyncStorage.getItem("user");
