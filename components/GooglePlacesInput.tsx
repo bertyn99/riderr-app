@@ -74,7 +74,7 @@ const GooglePlacesInput = ({
         }
       }}
       query={{
-        key: process.env.GOOGLE_MAPS_APIKEY || GOOGLE_MAPS_APIKEY,
+        key: GOOGLE_MAPS_APIKEY||process.env.GOOGLE_MAPS_APIKEY  ,
         language: "en",
       }}
       /*    currentLocation={position == "origin" ? true : false} */
