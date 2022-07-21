@@ -17,6 +17,7 @@ import ModalSearchDriver from "../../components/basic/modalSearchDriver";
 import OriginToDestination from "../../components/OriginToDestination";
 import Checkout from "../../components/Checkout";
 import { TripsConfirmScreenNavigationProp } from "../../components/navigation/types";
+import { SafeAreaView } from "react-native-safe-area-context";
 const TripsConfirmScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const trips = useSelector((state: RootState) => state.trips);
@@ -38,7 +39,7 @@ const TripsConfirmScreen = () => {
     }, 3800);
   };
   return (
-    <View>
+    <SafeAreaView>
       <View style={tw`h-3/5`}>
         {trips.origin && (
           <>
@@ -110,7 +111,7 @@ const TripsConfirmScreen = () => {
           ></ModalSearchDriver>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -1,3 +1,4 @@
+import { DrawerScreenProps } from "@react-navigation/drawer";
 import {
   NavigationContainer,
   NavigatorScreenParams,
@@ -10,8 +11,15 @@ import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 
-export type RootStackParamList = {
+export type DrawerStackParams = {
   HomeScreen: undefined;
+  SettingsScreen: undefined;
+  PaymentScreen: undefined;
+  HistoryScreen: undefined;
+};
+
+export type RootStackParamList = {
+  HomeScreen: DrawerScreenProps<DrawerStackParams>;
   TravelToScreen: undefined;
   WaintingUserScreen: undefined;
   WaitingDriverScreen: undefined;

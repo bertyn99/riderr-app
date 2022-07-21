@@ -6,9 +6,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { Point } from "../../types/trips.type";
+import { useNavigation } from "@react-navigation/native";
 import MapViewDirections from "react-native-maps-directions";
 import { Ionicons } from "@expo/vector-icons";
 import TripCommunication from "../../components/TripCommunication";
+import { WaitingDriverScreenNavigationProp } from "../../components/navigation/types";
 const voiture: Point = {
   lat: 47.21758,
   lng: -1.55745,
@@ -18,11 +20,16 @@ const voiture: Point = {
 const WaintingTripsScreen = () => {
   const trips = useSelector((state: RootState) => state.trips);
   const mapRef = useRef<MapView>(null);
+  const navigation = useNavigation<WaitingDriverScreenNavigationProp>();
   useEffect(() => {
     if (mapRef)
       mapRef?.current?.fitToSuppliedMarkers(["origin", "driver"], {
         edgePadding: { top: 80, left: 80, right: 80, bottom: 80 },
       });
+
+    setTimeout(() => {
+      navigation.navigate("TripsScreen");
+    }, 2200);
   }, []);
 
   return (
