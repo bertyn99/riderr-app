@@ -103,6 +103,11 @@ export type WaitingDriverScreenNavigationProp = NativeStackNavigationProp<
   "TripsScreen"
 >;
 
+export type TripsNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "HomeScreen"
+>;
+
 //route props
 
 export type typeClient = {

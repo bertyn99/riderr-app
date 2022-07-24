@@ -26,11 +26,13 @@ const SignInScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<authSignInScreenProp>();
   const [login, { isLoading }] = useLoginMutation();
+  const [msgErr, setMsgErr] = React.useState("");
   const [loginDriver] = useLoginDriverMutation();
   const { control, handleSubmit } = useForm();
   const { params } = useRoute<SignInScreenRouteProp>();
   const { type } = params;
   const userState = useSelector((state: RootState) => state.user);
+  const driverState = useSelector((state: RootState) => state.driver);
   const handleSignIn = async (data: any) => {
     if (type == "user") {
       try {
@@ -44,8 +46,8 @@ const SignInScreen = () => {
 
           console.log(userState);
         }
-      } catch (err) {
-        console.log(err);
+      } catch (err: any) {
+        setMsgErr(err.data.message);
       }
     } else {
       try {
@@ -54,9 +56,10 @@ const SignInScreen = () => {
         if (driver) {
           dispatch(setDriver(driver));
           /*   navigation.navigate("HomeScreen"); */
+          console.log(driverState);
         }
-      } catch (err) {
-        console.log(err);
+      } catch (err: any) {
+        setMsgErr(err.data.message);
       }
     }
   };
@@ -80,7 +83,9 @@ const SignInScreen = () => {
           name="password"
           hide={true}
         ></BasicInput>
-
+        {msgErr !== "" && (
+          <Text style={tw`items-center text-red-400`}>{msgErr}</Text>
+        )}
         <BasicButton
           text="Connexion"
           fn={handleSubmit(handleSignIn)}

@@ -33,7 +33,10 @@ const Navigation = () => {
     <NavigationContainer>
       <SafeAreaProvider>
         <Stack.Navigator>
-          {user.access_token == null && user.refresh_token == null ? (
+          {user.access_token == null &&
+          user.refresh_token == null &&
+          driver.access_token == null &&
+          driver.refresh_token == null ? (
             <Stack.Screen
               name="AuthScreen"
               component={AuthScreen}
@@ -68,27 +71,6 @@ const Navigation = () => {
                 component={TripsScreen}
                 options={{ headerShown: false }}
               />
-            </>
-          )}
-
-          {driver.access_token == null && user.refresh_token == null ? (
-            <Stack.Screen
-              name="AuthScreen"
-              component={AuthScreen}
-              options={{ headerShown: false }}
-            />
-          ) : (
-            <>
-              <Stack.Screen
-                name="MapDriverScreen"
-                component={HomeScreen}
-                options={{ headerShown: false }}
-              />
-              {/*   <Stack.Screen
-                name="MapScreen"
-                component={MapScreen}
-                options={{ headerShown: false }}
-              /> */}
             </>
           )}
         </Stack.Navigator>

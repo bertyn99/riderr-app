@@ -12,8 +12,8 @@ const initialState: IDriver = {
   isPro: false,
   documents: [],
   trips: [],
-  access_token: "",
-  refresh_token: "",
+  access_token: null,
+  refresh_token: null,
 };
 
 export const driverSlice = createSlice({
@@ -23,10 +23,11 @@ export const driverSlice = createSlice({
 
   reducers: {
     setDriver: (state: IDriver, action: PayloadAction<IDriver>) => {
-      state = action.payload;
+      console.log(action.payload);
+      return (state = { ...state, ...action.payload });
     },
     logOutDriver: (state: IDriver) => {
-      state = initialState;
+      return (state = initialState);
     },
   },
 });

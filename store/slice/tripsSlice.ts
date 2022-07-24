@@ -24,8 +24,8 @@ export const tripsSlice = createSlice({
       console.log(action.payload);
       return (state = { ...state, ...action.payload });
     },
-    deleteTrips: (state: ITrips, action: PayloadAction<ITrips>) => {
-      state = initialState;
+    deleteTrips: (state: ITrips) => {
+      return (state = initialState);
     },
   },
 });
